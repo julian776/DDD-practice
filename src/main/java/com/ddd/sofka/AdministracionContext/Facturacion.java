@@ -1,8 +1,10 @@
 package com.ddd.sofka.AdministracionContext;
 
 import co.com.sofka.domain.generic.Entity;
+import com.ddd.sofka.AlmacenContext.PiezaId;
 import com.ddd.sofka.TallerContext.Trabajo;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
@@ -20,8 +22,9 @@ public class Facturacion extends Entity<numeroOrden> {
     }
 
     private Double calcularAcumulado(List<Trabajo> registroTrabajosVehiculo){
-        return registroTrabajosVehiculo.stream().reduce(new Trabajo("XX",0D,"xx",1.5F),
-                (total, next) -> new Trabajo("XX", total.precio() + next.precio(), "xx",1.5F)).precio();
+        List<PiezaId> listAux = new ArrayList<>();
+        return registroTrabajosVehiculo.stream().reduce(new Trabajo("XX",0D,listAux, "xx", 1.5F),
+                (total, next) -> new Trabajo("XX", total.precio() + next.precio(), listAux, "xx",1.5F)).precio();
     }
 
     public void generarFactura(){

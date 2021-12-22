@@ -1,20 +1,24 @@
 package com.ddd.sofka.TallerContext;
 
 import co.com.sofka.domain.generic.ValueObject;
+import com.ddd.sofka.AlmacenContext.PiezaId;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Trabajo implements ValueObject<Trabajo> {
 
     private final String descripcion;
     private final Double precio;
+    private final List<PiezaId> piezasAsociadas;
     private final String observaciones;
     private final Float tiempoEstimado;
 
-    public Trabajo(String descripcion, Double precio, String observaciones, Float tiempoEstimado){
+    public Trabajo(String descripcion, Double precio, List<PiezaId> piezasAsociadas, String observaciones, Float tiempoEstimado){
 
         this.descripcion = Objects.requireNonNull(descripcion);
         this.precio = Objects.requireNonNull(precio);
+        this.piezasAsociadas = Objects.requireNonNull(piezasAsociadas);
         this.observaciones = Objects.requireNonNull(observaciones);
         this.tiempoEstimado = Objects.requireNonNull(tiempoEstimado);
         if(descripcion.isBlank()){
@@ -39,6 +43,10 @@ public class Trabajo implements ValueObject<Trabajo> {
         return precio;
     }
 
+    public List<PiezaId> piezasAsociadas() {
+        return piezasAsociadas;
+    }
+
     public String observaciones() {
         return observaciones;
     }
@@ -49,6 +57,6 @@ public class Trabajo implements ValueObject<Trabajo> {
 
     @Override
     public Trabajo value() {
-        return new Trabajo(this.descripcion, this.precio, this.observaciones, this.tiempoEstimado);
+        return new Trabajo(this.descripcion, this.precio, this.piezasAsociadas, this.observaciones, this.tiempoEstimado);
     }
 }
