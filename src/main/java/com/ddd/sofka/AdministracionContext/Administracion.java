@@ -5,6 +5,7 @@ import com.ddd.sofka.AlmacenContext.AlmacenId;
 import com.ddd.sofka.AlmacenContext.PiezaId;
 import com.ddd.sofka.TallerContext.Solicitud;
 import com.ddd.sofka.events.administracion.AdministracionCreada;
+import com.ddd.sofka.events.administracion.FacturaGenerada;
 import com.ddd.sofka.events.administracion.PiezasSolicitadas;
 import com.ddd.sofka.events.administracion.SolicitudProcesada;
 
@@ -40,6 +41,6 @@ public class Administracion extends AggregateEvent<AdministracionId> {
     }
 
     public void generarFactura(){
-        facturacion.generarFactura();
+        appendChange(new FacturaGenerada(this.facturacion)).apply();
     }
 }

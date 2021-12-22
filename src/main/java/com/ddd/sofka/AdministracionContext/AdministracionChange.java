@@ -2,6 +2,7 @@ package com.ddd.sofka.AdministracionContext;
 
 import co.com.sofka.domain.generic.EventChange;
 import com.ddd.sofka.events.administracion.AdministracionCreada;
+import com.ddd.sofka.events.administracion.FacturaGenerada;
 import com.ddd.sofka.events.administracion.PiezasSolicitadas;
 import com.ddd.sofka.events.administracion.SolicitudProcesada;
 
@@ -19,7 +20,15 @@ public class AdministracionChange extends EventChange {
         });
 
         apply((PiezasSolicitadas event) -> {
-            
+            System.out.println("Piezas en la solicitud");
+            System.out.println("----------------------");
+            event.getPiezas().forEach(piezaId -> {
+                System.out.println(piezaId);
+            });
+        });
+
+        apply((FacturaGenerada event) -> {
+            event.getFacturacion().generarFactura();
         });
     }
 }
