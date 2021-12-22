@@ -1,17 +1,6 @@
 package com.ddd.sofka.AlmacenContext;
 
-import com.ddd.sofka.generics.Id;
+import co.com.sofka.domain.generic.Identity;
 
-public class InventarioId extends Id {
-
-    public InventarioId(String id){
-        super(id);
-    }
-    public InventarioId(){
-
-    }
-
-    public InventarioId of(String id){
-        return new InventarioId(id);
-    }
+public class InventarioId extends Identity {
 }

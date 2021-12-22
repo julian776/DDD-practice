@@ -1,19 +1,16 @@
 package com.ddd.sofka.AlmacenContext;
 
+import co.com.sofka.domain.generic.Entity;
+
 import java.util.Objects;
 
-public class PiezaVehiculo extends PiezaId {
+public class PiezaVehiculo extends Entity<PiezaId> {
 
     private Integer cantidad;
     private InformacionPieza informacionPieza;
 
-    public PiezaVehiculo(String id, Integer cantidad, InformacionPieza informacionPieza){
-        super(id);
-        validatePiezaVehiculo(cantidad, informacionPieza);
-    }
-
-    public PiezaVehiculo(Integer cantidad, InformacionPieza informacionPieza){
-        super();
+    public PiezaVehiculo(PiezaId entityId, Integer cantidad, InformacionPieza informacionPieza){
+        super(entityId);
         validatePiezaVehiculo(cantidad, informacionPieza);
     }
 

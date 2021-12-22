@@ -1,9 +1,10 @@
 package com.ddd.sofka.AlmacenContext;
 
-import java.io.Serializable;
+import co.com.sofka.domain.generic.ValueObject;
+
 import java.util.Objects;
 
-public class InformacionPieza implements Serializable {
+public final class InformacionPieza implements ValueObject<InformacionPieza> {
 
     private final Float peso;
     private final Double precio;
@@ -25,28 +26,20 @@ public class InformacionPieza implements Serializable {
     }
 
 
-    public Float getPeso() {
+    public Float peso() {
         return peso;
     }
 
-    public Double getPrecio() {
+    public Double precio() {
         return precio;
     }
 
-    public String getMarca() {
+    public String marca() {
         return marca;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        InformacionPieza that = (InformacionPieza) o;
-        return Objects.equals(peso, that.peso) && Objects.equals(precio, that.precio) && Objects.equals(marca, that.marca);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(peso, precio, marca);
+    public InformacionPieza value() {
+        return new InformacionPieza(this.peso, this.precio, this.marca);
     }
 }

@@ -1,9 +1,10 @@
 package com.ddd.sofka.AlmacenContext;
 
-import java.io.Serializable;
+import co.com.sofka.domain.generic.ValueObject;
+
 import java.util.Objects;
 
-public class Capacidad implements Serializable {
+public final class Capacidad implements ValueObject<Capacidad> {
 
     private final Integer max;
     private final Integer min;
@@ -22,21 +23,15 @@ public class Capacidad implements Serializable {
         }
     }
 
-    public Integer getMax() {
+    public Integer max() {
         return max;
     }
+    public Integer min(){return min;}
+
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Capacidad capacidad = (Capacidad) o;
-        return Objects.equals(max, capacidad.max) && Objects.equals(min, capacidad.min);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(max, min);
+    public Capacidad value() {
+        return new Capacidad(this.max, this.min);
     }
 
     public Capacidad actualizar(Integer max, Integer min) {

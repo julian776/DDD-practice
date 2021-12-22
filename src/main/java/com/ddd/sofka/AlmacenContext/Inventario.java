@@ -1,22 +1,18 @@
 package com.ddd.sofka.AlmacenContext;
 
+import co.com.sofka.domain.generic.Entity;
+
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Objects;
 
-public class Inventario extends InventarioId{
+public class Inventario extends Entity<InventarioId> {
 
     private Capacidad capacidad;
-    private Hashtable<String, PiezaVehiculo> listaPiezas;
+    private Hashtable<PiezaId, PiezaVehiculo> listaPiezas;
 
-    public Inventario(String id, Capacidad capacidad, Hashtable<String, PiezaVehiculo> listaPiezas){
-        super(id);
-        this.capacidad = Objects.requireNonNull(capacidad, "Capacidad can not be null");
-        this.listaPiezas = Objects.requireNonNull(listaPiezas, "The list of piezaVehiculo can not be null");
-    }
-
-    public Inventario(Capacidad capacidad, Hashtable<String, PiezaVehiculo> listaPiezas){
-        super();
+    public Inventario(InventarioId entityId, Capacidad capacidad, Hashtable<PiezaId, PiezaVehiculo> listaPiezas){
+        super(entityId);
         this.capacidad = Objects.requireNonNull(capacidad, "Capacidad can not be null");
         this.listaPiezas = Objects.requireNonNull(listaPiezas, "The list of piezaVehiculo can not be null");
     }
@@ -27,12 +23,12 @@ public class Inventario extends InventarioId{
 
     public void registrarPiezas(List<PiezaVehiculo> listaPiezas){
         listaPiezas.forEach(piece -> {
-            this.listaPiezas.put(piece.getId(), piece);
+            this.listaPiezas.put(piece.identity(), piece);
         });
     }
 
-    public void despacharPiezas(String id, Integer cantidad){
-        PiezaVehiculo pieza = listaPiezas.get(id);
+    public void despacharPieza(PiezaId piezaId, Integer cantidad){
+        PiezaVehiculo pieza = listaPiezas.get(piezaId);
         pieza.restarCantidad(cantidad);
     }
 }
