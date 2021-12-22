@@ -1,4 +1,4 @@
-package com.ddd.sofka.events;
+package com.ddd.sofka.events.almacen;
 
 import co.com.sofka.domain.generic.DomainEvent;
 import com.ddd.sofka.AlmacenContext.PiezaVehiculo;

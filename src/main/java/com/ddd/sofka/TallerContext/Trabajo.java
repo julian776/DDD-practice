@@ -1,9 +1,7 @@
 package com.ddd.sofka.TallerContext;
 
 import co.com.sofka.domain.generic.ValueObject;
-import com.ddd.sofka.AlmacenContext.PiezaId;
 
-import java.util.List;
 import java.util.Objects;
 
 public class Trabajo implements ValueObject<Trabajo> {

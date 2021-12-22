@@ -24,7 +24,18 @@ public class Facturacion extends Entity<numeroOrden> {
                 (total, next) -> new Trabajo("XX", total.precio() + next.precio(), "xx",1.5F)).precio();
     }
 
-    private void generarFactura(){
+    public void generarFactura(){
         System.out.println(Calendar.getInstance());
+        System.out.println("Se tiene registro de " + registroTrabajosVehiculo.size() + " trabajos");
+        System.out.println("El valor total es de " + total);
+    }
+
+    public void agregarTrabajo(Trabajo trabajo){
+        Objects.requireNonNull(trabajo);
+        this.registroTrabajosVehiculo.add(trabajo);
+    }
+
+    public void cancelarOrden(){
+        registroTrabajosVehiculo.remove(registroTrabajosVehiculo.size() - 1);
     }
 }
